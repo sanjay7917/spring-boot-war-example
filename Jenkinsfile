@@ -1,75 +1,42 @@
-pipeline{
+pipeline {
     agent any
-    tools {
-        maven 'Maven'
-    }
-    stages{
+     tools {
+        maven 'Maven' 
+        }
+    stages {
         stage("Test"){
             steps{
-                sh 'mvn test'
+                // mvn test
+                sh "mvn test"
+                
             }
-            post{
-                always{
-                    echo "========always========"
-                }
-                success{
-                    echo "========A executed successfully========"
-                }
-                failure{
-                    echo "========A execution failed========"
-                }
-            }
+            
         }
         stage("Build"){
             steps{
-                sh 'mvn package'
+                sh "mvn package"
+                
             }
-            post{
-                always{
-                    echo "========always========"
-                }
-                success{
-                    echo "========A executed successfully========"
-                }
-                failure{
-                    echo "========A execution failed========"
-                }
-            }
+            
         }
-        stage("Deploy To Test"){
+        stage("Deploy on Test"){
             steps{
-                deploy adapters: [tomcat9(credentialsId: 'tomcatdetail', path: '', url: 'http://3.17.36.113:8080/')], contextPath: '/hello-world-0.0.1-SNAPSHOT', war: '**/*.war'
+                // deploy on container -> plugin
+                deploy adapters: [tomcat9(credentialsId: 'tomcatdetail', path: '', url: 'http://3.17.36.113:8080/')], contextPath: '/app', war: '**/*.war'
+              
             }
-            post{
-                always{
-                    echo "========always========"
-                }
-                success{
-                    echo "========A executed successfully========"
-                }
-                failure{
-                    echo "========A execution failed========"
-                }
-            }
+            
         }
-        stage("Deploy To Prod"){
+        stage("Deploy on Prod"){
              input {
                 message "Should we continue?"
-                ok "Yes"
+                ok "Yes we Should"
             }
+            
             steps{
-                deploy adapters: [tomcat9(credentialsId: 'tomcatdetail', path: '', url: 'http://18.218.3.44:8080/')], contextPath: '/hello-world-0.0.1-SNAPSHOT', war: '**/*.war'
-            }
-            post{
-                always{
-                    echo "========always========"
-                }
-                success{
-                    echo "========A executed successfully========"
-                }
-                failure{
-                    echo "========A execution failed========"
-                }
+                // deploy on container -> plugin
+                deploy adapters: [tomcat9(credentialsId: 'tomcatdetail', path: '', url: 'http://18.218.3.44:8080/')], contextPath: '/app', war: '**/*.war'
+
             }
         }
     }
