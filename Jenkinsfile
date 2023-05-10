@@ -6,6 +6,7 @@ pipeline{
     stages{
         stage("Test"){
             steps{
+                slackSend channel: 'testing', message: 'Job Started'
                 sh 'mvn test'
             }
             post{
@@ -13,10 +14,10 @@ pipeline{
                     echo "========always========"
                 }
                 success{
-                    echo "========A executed successfully========"
+                    slackSend channel: 'testing', message: 'Success'
                 }
                 failure{
-                    echo "========A execution failed========"
+                    slackSend channel: 'testing', message: 'Failed'
                 }
             }
         }
@@ -29,10 +30,10 @@ pipeline{
                     echo "========always========"
                 }
                 success{
-                    echo "========A executed successfully========"
+                    slackSend channel: 'testing', message: 'Success'
                 }
                 failure{
-                    echo "========A execution failed========"
+                    slackSend channel: 'testing', message: 'Failed'
                 }
             }
         }
@@ -45,10 +46,10 @@ pipeline{
                     echo "========always========"
                 }
                 success{
-                    echo "========A executed successfully========"
+                    slackSend channel: 'testing', message: 'Success'
                 }
                 failure{
-                    echo "========A execution failed========"
+                    slackSend channel: 'testing', message: 'Failed'
                 }
             }
         }
@@ -65,10 +66,10 @@ pipeline{
                     echo "========always========"
                 }
                 success{
-                    echo "========A executed successfully========"
+                    slackSend channel: 'testing', message: 'Success'
                 }
                 failure{
-                    echo "========A execution failed========"
+                    slackSend channel: 'testing', message: 'Failed'
                 }
             }
         }
@@ -78,10 +79,10 @@ pipeline{
             echo "========always========"
         }
         success{
-            echo "========pipeline executed successfully ========"
+            slackSend channel: 'testing', message: 'Success'
         }
         failure{
-            echo "========pipeline execution failed========"
+            slackSend channel: 'testing', message: 'Failed'
         }
     }
 }
