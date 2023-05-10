@@ -38,7 +38,7 @@ pipeline{
         }
         stage("Deploy To Test"){
             steps{
-                deploy adapters: [tomcat9(credentialsId: 'tomcatdetail', path: '', url: 'http://3.17.36.113:8080/')], contextPath: '/hello-world-0.0.1-SNAPSHOT', war: '**/*.war'
+                deploy adapters: [tomcat9(credentialsId: 'tomcatdetail', path: '', url: 'http://3.17.36.113:8080/')], contextPath: '/app', war: '**/*.war'
             }
             post{
                 always{
@@ -58,7 +58,7 @@ pipeline{
                 ok "Yes"
             }
             steps{
-                deploy adapters: [tomcat9(credentialsId: 'tomcatdetail', path: '', url: 'http://18.218.3.44:8080/')], contextPath: '/hello-world-0.0.1-SNAPSHOT', war: '**/*.war'
+                deploy adapters: [tomcat9(credentialsId: 'tomcatdetail', path: '', url: 'http://18.218.3.44:8080/')], contextPath: '/app', war: '**/*.war'
             }
             post{
                 always{
