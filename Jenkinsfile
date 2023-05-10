@@ -14,9 +14,11 @@ pipeline{
                     echo "========always========"
                 }
                 success{
+                    echo "Test Job"
                     slackSend channel: 'testing', message: 'Success'
                 }
                 failure{
+                    echo "Test Job"
                     slackSend channel: 'testing', message: 'Failed'
                 }
             }
@@ -30,9 +32,11 @@ pipeline{
                     echo "========always========"
                 }
                 success{
+                    echo "Build Job"
                     slackSend channel: 'testing', message: 'Success'
                 }
                 failure{
+                    echo "Build Job"
                     slackSend channel: 'testing', message: 'Failed'
                 }
             }
@@ -46,9 +50,11 @@ pipeline{
                     echo "========always========"
                 }
                 success{
+                    echo "Deploy To Test Job"
                     slackSend channel: 'testing', message: 'Success'
                 }
                 failure{
+                    echo "Deploy To Test Job"
                     slackSend channel: 'testing', message: 'Failed'
                 }
             }
@@ -66,9 +72,11 @@ pipeline{
                     echo "========always========"
                 }
                 success{
+                    echo "Deploy To Prod Job"
                     slackSend channel: 'testing', message: 'Success'
                 }
                 failure{
+                    echo "Deploy To Prod Job"
                     slackSend channel: 'testing', message: 'Failed'
                 }
             }
@@ -79,9 +87,11 @@ pipeline{
             echo "========always========"
         }
         success{
+            echo "Pipeline Status"
             slackSend channel: 'testing', message: 'Success'
         }
         failure{
+            echo "Pipeline Status"
             slackSend channel: 'testing', message: 'Failed'
         }
     }
